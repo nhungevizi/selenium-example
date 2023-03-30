@@ -1,38 +1,37 @@
-import { By, until, WebDriver } from 'selenium-webdriver';
+import { By, until, Builder } from 'selenium-webdriver';
+import { driver } from '../support/world'
 
 export class LoginPage {
   private url = "https://id.atlassian.com/login";
   private emailInput = '#username';
   private continueButton = '#login-submit';
   private passwordInput = '#password';
-  private loginButton = '//button[@data-testid="nav__profile-menu-trigger"]';
-  private driver: WebDriver;
 
-  constructor(driver: WebDriver) {
-    this.driver = driver;
-  }
+  constructor() {}
 
   async navigateTo() {
-    await this.driver.get(this.url);
+    await driver.get(this.url);
   }
 
   async inputEmail(email: string) {
-    await this.driver.findElement(By.css(this.emailInput)).sendKeys(email);
+    await driver.findElement(By.css(this.emailInput)).sendKeys(email);
   }
 
   async clickContinueButton() {
-    await this.driver.findElement(By.css(this.continueButton)).click();
+    await driver.findElement(By.css(this.continueButton)).click();
   } 
 
   async inputPassword(password: string) {
-    await this.driver.findElement(By.css(this.passwordInput)).sendKeys(password);
+    const passwordElement = await driver.findElement(By.css(this.passwordInput));
+    await driver.wait(until.elementIsVisible(passwordElement), 10000); // Wait for password textbox is displayed
+    await passwordElement.sendKeys(password);
   }
 
   async clickLoginButton() {
-    await this.driver.findElement(By.css(this.loginButton)).click();
+    await driver.findElement(By.css(this.continueButton)).click();
   }
 
   async isHomePage() {
-    await this.driver.sleep(2000);
+    await driver.sleep(2000); // Wait for homepage is displayed
   }
 }

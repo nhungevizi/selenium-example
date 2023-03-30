@@ -1,12 +1,19 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "esModuleInterop": true, 
+    }
+  },
     "compilerOptions": {
       "module": "system",
       "noImplicitAny": true,
       "removeComments": true,
       "preserveConstEnums": true,
       "outFile": "../../built/local/tsc.js",
-      "sourceMap": true
+      "sourceMap": true,
+      "moduleResolution": "node"
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+    "exclude": ["node_modules", "src**/*.step.ts"]
   }

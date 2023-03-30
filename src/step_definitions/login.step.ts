@@ -1,22 +1,23 @@
-import { Given, When, Then } from 'cucumber';
+import { Given, When, Then } from '@cucumber/cucumber';
 import { LoginPage } from '../page/login.page';
 
-let loginPage: LoginPage;
+let loginPage= new LoginPage();
 
 Given(/^User is on login page$/, async () => {
-  await loginPage.navigateTo();
-});
+    loginPage = new LoginPage();
+    await loginPage.navigateTo();
+  });
 
 When(/^User enter username as "([^"]*)"$/, async (email: string) => {
   await loginPage.inputEmail(email);
 });
 
-When(/^User click button continue login$/, async () => {
+When(/^User click button continue login$/, {timeout: 10000}, async () => {
   await loginPage.clickContinueButton();
 });
 
 When(/^User enter password as "([^"]*)"$/, async (password: string) => {
-  await loginPage.inputEmail(password);
+  await loginPage.inputPassword(password);
 });
 
 When(/^User click button login$/, async () => {

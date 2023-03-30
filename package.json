@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "cucumber-js"
+  },
   "devDependencies": {
     "@cucumber/cucumber": "^9.1.0"
   },
@@ -8,6 +11,7 @@
     "@types/selenium-webdriver": "^4.1.13",
     "chai": "^4.3.7",
     "cucumber": "^6.0.7",
-    "selenium-webdriver": "^4.8.2"
+    "selenium-webdriver": "^4.8.2",
+    "ts-node": "^10.9.1"
   }
 }
